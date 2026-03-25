@@ -5,8 +5,8 @@
 <title>Date Einladung</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-body {
-  background-color: black;
+body 
+{background-color: black;
   color: white;
   font-family: 'Great Vibes', cursive;
   text-align: center;
@@ -16,8 +16,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center;}
 .screen { display: none; position: relative; width: 100%; max-width: 600px; padding: 30px; box-sizing: border-box; }
 .active { display: block; }
 button {
@@ -29,41 +28,34 @@ button {
   cursor: pointer;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(255,0,102,0.4);
-  transition: all 0.3s ease;
-}
+  transition: all 0.3s ease;}
 button:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,0,102,0.6); }
 #no-btn { position: relative; transition: all 0.3s; }
 .heart, .confetti-heart {
   position: absolute;
   font-size: 2em;
   animation: floatUp 3s linear forwards;
-  pointer-events: none;
-}
+  pointer-events: none;}
 @keyframes floatUp {
   0% { transform: translateY(0) scale(0.5); opacity: 1; }
-  100% { transform: translateY(-400px) scale(1.5); opacity: 0; }
-}
+  100% { transform: translateY(-400px) scale(1.5); opacity: 0; }}
 #yes-overlay {
   position: fixed; top:0; left:0; width:100%; height:100%;
   background: url('dein-bild.jpg') center/cover no-repeat;
-  opacity: 0; transition: opacity 1s; z-index: 10;
-}
+  opacity: 0; transition: opacity 1s; z-index: 10;}
 #home-run {
   width: 250px; margin-top: 20px; transform: translateY(500px);
   transition: transform 1.5s ease-out; border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(255,255,255,0.5);
-}
+  box-shadow: 0 10px 25px rgba(255,255,255,0.5);}
 #intro img, #details img {
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(255,0,102,0.4);
-  transition: transform 0.5s;
-}
+  transition: transform 0.5s;}
 #intro img:hover { transform: scale(1.05); }
 #confetti-container { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:20; }
 </style>
 </head>
 <body>
-
 <!-- Intro / Start -->
 <div id="intro" class="screen active">
   <h1>🫀 Willst du mit mir auf ein Date gehen? 🫀</h1>
@@ -71,7 +63,6 @@ button:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,0,102,0.6)
   <br><br>
   <button id="start-btn">Klick hier um zu antworten</button>
 </div>
-
 <!-- Frage / Optionen -->
 <div id="question" class="screen">
   <h2>Antwort auswählen:</h2>
@@ -79,7 +70,6 @@ button:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,0,102,0.6)
   <button class="answer-btn">Fand es ganz heiß beim letzten Mal würde es gerne wiederholen</button>
   <button id="no-btn">Nein</button>
 </div>
-
 <!-- Ja Antwort / Home Run -->
 <div id="yes-response" class="screen">
   <h2>Glück gehabt, ich auch mit dir 😏</h2>
@@ -87,21 +77,17 @@ button:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,0,102,0.6)
   <br><br>
   <button id="details-btn">Weitere Details</button>
 </div>
-
 <!-- Details -->
 <div id="details" class="screen">
   <h2>Dienstag Abend 19 Uhr – Mach dich hübsch 💖</h2>
   <img src="wir-beide.jpg" alt="Wir beide" width="250">
 </div>
-
 <!-- Overlay & Herzregen -->
 <div id="yes-overlay"></div>
 <div id="confetti-container"></div>
-
 <!-- Musik -->
 <audio id="intro-music" src="Chet-Baker-Its-Always-You.mp3" autoplay></audio>
 <audio id="love-music" src="GucciMane-DopeLove.mp3"></audio>
-
 <script>
 // Elemente
 const intro = document.getElementById('intro');
@@ -110,16 +96,13 @@ const yesResp = document.getElementById('yes-response');
 const details = document.getElementById('details');
 const yesOverlay = document.getElementById('yes-overlay');
 const confettiContainer = document.getElementById('confetti-container');
-
 const startBtn = document.getElementById('start-btn');
 const answerBtns = document.querySelectorAll('.answer-btn');
 const noBtn = document.getElementById('no-btn');
 const detailsBtn = document.getElementById('details-btn');
-
 const introMusic = document.getElementById('intro-music');
 const loveMusic = document.getElementById('love-music');
 const homeRun = document.getElementById('home-run');
-
 // Herzanimation beim Hover
 function createHeart() {
   const heart = document.createElement('div');
@@ -128,18 +111,15 @@ function createHeart() {
   heart.style.left = Math.random() * window.innerWidth + 'px';
   heart.style.fontSize = (20 + Math.random()*30) + 'px';
   document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),3000);
-}
+  setTimeout(()=>heart.remove(),3000);}
 let heartInterval;
 startBtn.addEventListener('mouseenter',()=>heartInterval=setInterval(createHeart,300));
 startBtn.addEventListener('mouseleave',()=>clearInterval(heartInterval));
-
 // Start -> Frage Seite
 startBtn.addEventListener('click',()=>{
   intro.classList.remove('active');
   question.classList.add('active');
 });
-
 // Antwort Ja -> Home-Run-Seite
 answerBtns.forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -152,20 +132,17 @@ answerBtns.forEach(btn=>{
     startConfetti();
   });
 });
-
 // Nein-Button läuft weg
 noBtn.addEventListener('mouseover',()=>{
   const x=Math.random()*80+10;
   const y=Math.random()*80+10;
   noBtn.style.transform=`translate(${x}px, ${y}px)`;
 });
-
 // Weitere Details
 detailsBtn.addEventListener('click',()=>{
   yesResp.classList.remove('active');
   details.classList.add('active');
 });
-
 // Herzregen / Confetti
 function createConfettiHeart(){
   const heart=document.createElement('div');
@@ -183,14 +160,11 @@ function createConfettiHeart(){
     {transform:`translate(0px,0px) rotate(0deg)`,opacity:1},
     {transform:`translate(${endX}px,${endY}px) rotate(${rotate}deg)`,opacity:0}
   ],{duration:duration,easing:'linear'});
-  setTimeout(()=>heart.remove(),duration);
-}
+  setTimeout(()=>heart.remove(),duration);}
 let confettiInterval;
 function startConfetti(){
   confettiInterval=setInterval(createConfettiHeart,200);
-  setTimeout(()=>clearInterval(confettiInterval),6000);
-}
+  setTimeout(()=>clearInterval(confettiInterval),6000);}
 </script>
-
 </body>
 </html>
