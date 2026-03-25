@@ -5,105 +5,82 @@
 <title>Date Einladung</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-  body {
-    background-color: black;
-    color: white;
-    font-family: 'Great Vibes', cursive;
-    text-align: center;
-    margin: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .screen { display: none; position: relative; width: 100%; max-width: 600px; padding: 30px; box-sizing: border-box; }
-  .active { display: block; }
-
-  button {
-    background: linear-gradient(145deg,#ff0066,#ff3399);
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.3em;
-    margin: 15px;
-    cursor: pointer;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(255,0,102,0.4);
-    transition: all 0.3s ease;
-  }
-  button:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,0,102,0.6); }
-  #no-btn { position: relative; transition: all 0.3s; }
-
-  /* Herz Animation */
-  .heart, .confetti-heart {
-    position: absolute;
-    font-size: 2em;
-    animation: floatUp 3s linear forwards;
-    pointer-events: none;
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(0) scale(0.5); opacity: 1; }
-    100% { transform: translateY(-400px) scale(1.5); opacity: 0; }
-  }
-
-  #yes-overlay {
-    position: fixed;
-    top:0; left:0;
-    width: 100%;
-    height: 100%;
-    background: url('dein-bild.jpg') center/cover no-repeat;
-    opacity: 0;
-    transition: opacity 1s;
-    z-index: 10;
-  }
-
-  #home-run {
-    width: 250px;
-    margin-top: 20px;
-    transform: translateY(500px);
-    transition: transform 1.5s ease-out;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(255,255,255,0.5);
-  }
-
-  #intro img {
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(255,0,102,0.4);
-    transition: transform 0.5s;
-  }
-  #intro img:hover { transform: scale(1.05); }
-
-  #confetti-container { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:20; }
-
-  /* Details Bild */
-  #details img {
-    border-radius:20px;
-    margin-top:20px;
-    box-shadow:0 10px 25px rgba(255,0,102,0.4);
-  }
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.screen { display: none; position: relative; width: 100%; max-width: 600px; padding: 30px; box-sizing: border-box; }
+.active { display: block; }
+button {
+  background: linear-gradient(145deg,#ff0066,#ff3399);
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.3em;
+  margin: 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(255,0,102,0.4);
+  transition: all 0.3s ease;
+}
+button:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,0,102,0.6); }
+#no-btn { position: relative; transition: all 0.3s; }
+.heart, .confetti-heart {
+  position: absolute;
+  font-size: 2em;
+  animation: floatUp 3s linear forwards;
+  pointer-events: none;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.5); opacity: 1; }
+  100% { transform: translateY(-400px) scale(1.5); opacity: 0; }
+}
+#yes-overlay {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: url('dein-bild.jpg') center/cover no-repeat;
+  opacity: 0; transition: opacity 1s; z-index: 10;
+}
+#home-run {
+  width: 250px; margin-top: 20px; transform: translateY(500px);
+  transition: transform 1.5s ease-out; border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(255,255,255,0.5);
+}
+#intro img, #details img {
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(255,0,102,0.4);
+  transition: transform 0.5s;
+}
+#intro img:hover { transform: scale(1.05); }
+#confetti-container { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:20; }
 </style>
 </head>
 <body>
 
-<!-- Intro -->
+<!-- Intro / Start -->
 <div id="intro" class="screen active">
   <h1>🫀 Willst du mit mir auf ein Date gehen? 🫀</h1>
   <img src="dein-bild.jpg" alt="Moa Bild" width="200">
   <br><br>
-  <button id="start-btn">Ja, klar!</button>
+  <button id="start-btn">Klick hier um zu antworten</button>
 </div>
 
-<!-- Frage -->
+<!-- Frage / Optionen -->
 <div id="question" class="screen">
   <h2>Antwort auswählen:</h2>
-  <button class="answer-btn" data-type="yes">Bist ja schon ganz hübsch also warum nicht</button>
-  <button class="answer-btn" data-type="yes">Fand es ganz heiß beim letzten Mal würde es gerne wiederholen</button>
+  <button class="answer-btn">Bist ja schon ganz hübsch also warum nicht</button>
+  <button class="answer-btn">Fand es ganz heiß beim letzten Mal würde es gerne wiederholen</button>
   <button id="no-btn">Nein</button>
 </div>
 
-<!-- Ja Antwort -->
+<!-- Ja Antwort / Home Run -->
 <div id="yes-response" class="screen">
   <h2>Glück gehabt, ich auch mit dir 😏</h2>
   <img id="home-run" src="home-run.gif" alt="Home Run">
@@ -113,8 +90,7 @@
 
 <!-- Details -->
 <div id="details" class="screen">
-  <h2>Dienstag Abend 19 Uhr – Mach dich höbsch🫀 </h2>
-  <!-- Bild von euch -->
+  <h2>Dienstag Abend 19 Uhr – Mach dich hübsch 💖</h2>
   <img src="wir-beide.jpg" alt="Wir beide" width="250">
 </div>
 
@@ -122,11 +98,12 @@
 <div id="yes-overlay"></div>
 <div id="confetti-container"></div>
 
-<!-- Musik von iTunes -->
+<!-- Musik -->
 <audio id="intro-music" src="Chet-Baker-Its-Always-You.mp3" autoplay></audio>
 <audio id="love-music" src="GucciMane-DopeLove.mp3"></audio>
 
 <script>
+// Elemente
 const intro = document.getElementById('intro');
 const question = document.getElementById('question');
 const yesResp = document.getElementById('yes-response');
@@ -143,7 +120,7 @@ const introMusic = document.getElementById('intro-music');
 const loveMusic = document.getElementById('love-music');
 const homeRun = document.getElementById('home-run');
 
-// Herz Animation auf Start
+// Herzanimation beim Hover
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
@@ -151,78 +128,67 @@ function createHeart() {
   heart.style.left = Math.random() * window.innerWidth + 'px';
   heart.style.fontSize = (20 + Math.random()*30) + 'px';
   document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(), 3000);
+  setTimeout(()=>heart.remove(),3000);
 }
-
 let heartInterval;
-startBtn.addEventListener('mouseenter', () => heartInterval = setInterval(createHeart, 300));
-startBtn.addEventListener('mouseleave', () => clearInterval(heartInterval));
+startBtn.addEventListener('mouseenter',()=>heartInterval=setInterval(createHeart,300));
+startBtn.addEventListener('mouseleave',()=>clearInterval(heartInterval));
 
-// Start -> Frage
-startBtn.addEventListener('click', () => {
+// Start -> Frage Seite
+startBtn.addEventListener('click',()=>{
   intro.classList.remove('active');
   question.classList.add('active');
 });
 
-// Antwort Ja -> Overlay, Home Run, Musikwechsel, Herzregen
-answerBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
+// Antwort Ja -> Home-Run-Seite
+answerBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
     question.classList.remove('active');
     yesResp.classList.add('active');
-
-    yesOverlay.style.opacity = 0.7;
+    yesOverlay.style.opacity=0.7;
     introMusic.pause();
     loveMusic.play();
-    setTimeout(()=>homeRun.style.transform = 'translateY(0)', 100);
-
-    // Herzregen starten
+    setTimeout(()=>homeRun.style.transform='translateY(0)',100);
     startConfetti();
   });
 });
 
-// Lustiger "Nein" Button Effekt
-noBtn.addEventListener('mouseover', () => {
-  const x = Math.random() * 80 + 10;
-  const y = Math.random() * 80 + 10;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+// Nein-Button läuft weg
+noBtn.addEventListener('mouseover',()=>{
+  const x=Math.random()*80+10;
+  const y=Math.random()*80+10;
+  noBtn.style.transform=`translate(${x}px, ${y}px)`;
 });
 
 // Weitere Details
-detailsBtn.addEventListener('click', () => {
+detailsBtn.addEventListener('click',()=>{
   yesResp.classList.remove('active');
   details.classList.add('active');
 });
 
 // Herzregen / Confetti
-function createConfettiHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'confetti-heart';
-  heart.textContent = '🫀';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.fontSize = (15 + Math.random()*20) + 'px';
-  heart.style.top = '-50px';
+function createConfettiHeart(){
+  const heart=document.createElement('div');
+  heart.className='confetti-heart';
+  heart.textContent='🫀';
+  heart.style.left=Math.random()*window.innerWidth+'px';
+  heart.style.fontSize=(15+Math.random()*20)+'px';
+  heart.style.top='-50px';
   confettiContainer.appendChild(heart);
-
-  const duration = 4000 + Math.random()*2000;
-  const endX = Math.random()*window.innerWidth;
-  const endY = window.innerHeight + 50;
-  const rotate = Math.random()*360;
-
+  const duration=4000+Math.random()*2000;
+  const endX=Math.random()*window.innerWidth;
+  const endY=window.innerHeight+50;
+  const rotate=Math.random()*360;
   heart.animate([
-    { transform: `translate(0px, 0px) rotate(0deg)`, opacity: 1 },
-    { transform: `translate(${endX}px, ${endY}px) rotate(${rotate}deg)`, opacity: 0 }
-  ], {
-    duration: duration,
-    easing: 'linear'
-  });
-
-  setTimeout(()=>heart.remove(), duration);
+    {transform:`translate(0px,0px) rotate(0deg)`,opacity:1},
+    {transform:`translate(${endX}px,${endY}px) rotate(${rotate}deg)`,opacity:0}
+  ],{duration:duration,easing:'linear'});
+  setTimeout(()=>heart.remove(),duration);
 }
-
 let confettiInterval;
-function startConfetti() {
-  confettiInterval = setInterval(createConfettiHeart, 200);
-  setTimeout(()=>clearInterval(confettiInterval), 6000);
+function startConfetti(){
+  confettiInterval=setInterval(createConfettiHeart,200);
+  setTimeout(()=>clearInterval(confettiInterval),6000);
 }
 </script>
 
